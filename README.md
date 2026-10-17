@@ -2,6 +2,36 @@
 
 An unofficial Chrome extension for [TRACS](https://tracs.utoronto.ca/), the University of Toronto's TA and instructor hiring site. It shows what each job posting is about (course name, instructor, contact) right in the postings table, so you no longer have to open every posting.
 
+## Install
+
+The Chrome Web Store listing is on its way. Until then, install it from the zip; it takes about a minute.
+
+1. Download **`tracs-plus-0.1.0.zip`** from the [latest release](https://github.com/Fanisting/tracs-plus/releases/latest).
+2. Unzip it into a folder you will keep, such as `Documents/tracs-plus`. Chrome runs the extension from this folder, so don't delete it.
+3. Open `chrome://extensions` and turn on **Developer mode** (top right).
+4. Click **Load unpacked** and choose the unzipped folder (the one that contains `manifest.json`).
+5. The TRACS+ guide opens. Pin the icon: click the puzzle piece in the toolbar, then the pin next to **TRACS+ Course Info**.
+6. Open [TRACS](https://tracs.utoronto.ca/) and click **Search for Postings** or **+ Rotman TA**.
+
+**To update**, unzip the new release over the same folder, then click the reload arrow on the TRACS+ card in `chrome://extensions` and refresh any open TRACS tabs.
+
+**To uninstall**, click **Remove** on the TRACS+ card. This also deletes its settings and cache.
+
+> The release also has a `.crx` file. Chrome on Windows and macOS only installs `.crx` files from the Web Store, so use the zip.
+
+## Compatibility
+
+| | Status |
+| --- | --- |
+| **Google Chrome** 111 or later (Windows, macOS, Linux, ChromeOS) | Supported; tested on Chrome 155 on Windows 11 |
+| **Microsoft Edge, Brave, Arc, Opera, Vivaldi** (recent versions) | Should work, as they run Chrome extensions. Load it the same way from `edge://extensions`, `brave://extensions`, etc. |
+| **Firefox, Safari** | Not supported |
+| **Phones and tablets** | Not supported (mobile Chrome has no extensions) |
+| **TRACS** | The site as of October 2026, signed in or not. The Status column, and keeping submitted postings on top, need you to be signed in. |
+| **Instructors** | Undergraduate courses on all three campuses (St. George, UTM, UTSC). Graduate courses show `grad course` because their instructors are not public. |
+
+If a TRACS update breaks something, TRACS itself keeps working: turn TRACS+ off in `chrome://extensions` and [open an issue](https://github.com/Fanisting/tracs-plus/issues).
+
 ![The postings table with TRACS+](docs/screenshots/table.png)
 
 Everything TRACS+ adds uses TRACS's own colors and carries a blue **TRACS+** badge or a gold **+** mark, so you can tell it apart from the site itself.
@@ -47,11 +77,6 @@ The guide opens once after you install TRACS+. Click the toolbar icon, or **Guid
 | `TBA` | The course is in the timetable, but no instructor is posted yet |
 | `grad course` | Graduate courses (4-digit codes such as RSM2512H) are not in the public timetable |
 | `not in timetable` | The timetable does not list this course code |
-
-## Install
-
-- **Chrome Web Store**: search for "TRACS+ Course Info" once the listing is approved.
-- **From source**: download this repo, open `chrome://extensions`, turn on **Developer mode**, click **Load unpacked** and choose the folder.
 
 ## Privacy
 
