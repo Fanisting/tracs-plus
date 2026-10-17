@@ -26,13 +26,13 @@ test('sessions and term prefixes follow the TRACS academic-year convention', () 
 
 const RSM270 = [
   { code: 'RSM270H1', sec: 'F', ses: ['20269'], s: [
-    { n: 'LEC0101', m: 'LEC', i: ['Vahid Roshanaei'] },
-    { n: 'LEC0601', m: 'LEC', i: ['Hamid Arzani'] },
+    { n: 'LEC0101', m: 'LEC', i: ['Ada Park'] },
+    { n: 'LEC0601', m: 'LEC', i: ['Ben Okafor'] },
   ] },
   { code: 'RSM270H1', sec: 'S', ses: ['20271'], s: [
-    { n: 'LEC0101', m: 'LEC', i: ['Hansheng Jiang'] },
-    { n: 'LEC0201', m: 'LEC', i: ['Hansheng Jiang'] },
-    { n: 'LEC0401', m: 'LEC', i: ['Adam Saunders'] },
+    { n: 'LEC0101', m: 'LEC', i: ['Chloe Martin'] },
+    { n: 'LEC0201', m: 'LEC', i: ['Chloe Martin'] },
+    { n: 'LEC0401', m: 'LEC', i: ['Dev Shah'] },
     { n: 'LEC5101', m: 'LEC', i: [] },
     { n: 'TUT0101', m: 'TUT', i: ['Some TA'] },
   ] },
@@ -40,19 +40,19 @@ const RSM270 = [
 
 test('pickInstructors returns unique lecture instructors for the posting term', () => {
   const p = L.pickInstructors(RSM270, { prefixes: ['20271'] });
-  assert.deepEqual(p.names, ['Hansheng Jiang', 'Adam Saunders']);
+  assert.deepEqual(p.names, ['Chloe Martin', 'Dev Shah']);
   assert.equal(p.otherTerm, false);
   assert.equal(p.detail.length, 3);
 });
 
 test('lecOnly=false also lists tutorial instructors', () => {
   const p = L.pickInstructors(RSM270, { prefixes: ['20271'], lecOnly: false });
-  assert.deepEqual(p.names, ['Hansheng Jiang', 'Adam Saunders', 'Some TA']);
+  assert.deepEqual(p.names, ['Chloe Martin', 'Dev Shah', 'Some TA']);
 });
 
 test('explicit section suffix filters offerings', () => {
   const p = L.pickInstructors(RSM270, { prefixes: [], section: 'F' });
-  assert.deepEqual(p.names, ['Vahid Roshanaei', 'Hamid Arzani']);
+  assert.deepEqual(p.names, ['Ada Park', 'Ben Okafor']);
 });
 
 test('other-term fallback only when enabled', () => {
@@ -61,7 +61,7 @@ test('other-term fallback only when enabled', () => {
   assert.deepEqual(off.names, []);
   assert.equal(off.inTimetable, true);
   const on = L.pickInstructors(fallOnly, { prefixes: ['20271'], anyTerm: true });
-  assert.deepEqual(on.names, ['Vahid Roshanaei', 'Hamid Arzani']);
+  assert.deepEqual(on.names, ['Ada Park', 'Ben Okafor']);
   assert.equal(on.otherTerm, true);
   assert.equal(on.term, 'Fall 2026');
 });

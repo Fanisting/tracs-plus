@@ -22,7 +22,12 @@ const headersReady = chrome.declarativeNetRequest.updateSessionRules({
         { header: 'Referer', operation: 'set', value: 'https://ttb.utoronto.ca/' },
       ],
     },
-    condition: { urlFilter: '||api.easi.utoronto.ca/ttb/', tabIds: [chrome.tabs.TAB_ID_NONE], resourceTypes: ['xmlhttprequest'] },
+    condition: {
+      urlFilter: '||api.easi.utoronto.ca/ttb/getPageableCourses',
+      tabIds: [chrome.tabs.TAB_ID_NONE],
+      requestMethods: ['post'],
+      resourceTypes: ['xmlhttprequest'],
+    },
   }],
 });
 
@@ -47,6 +52,14 @@ async function queryCode(code, sessions) {
   if (!res.ok || !text) throw new Error(`HTTP ${res.status}${text ? '' : ', empty body'}`);
   return compactCourses(JSON.parse(text)?.payload?.pageableCourse?.courses);
 }
+
+// Drop expired cache entries once per service worker start, so the cache cannot grow without end.
+chrome.storage.local.get(null).then((all) => {
+  const old = Object.entries(all)
+    .filter(([k, v]) => k.startsWith(`${CACHE_VERSION}|`) && !(Date.now() - v?.t < TTL_HIT))
+    .map(([k]) => k);
+  if (old.length) chrome.storage.local.remove(old);
+});
 
 async function lookup({ raw, dept, year }) {
   const { candidates } = parseCode(raw, dept);

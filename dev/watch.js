@@ -23,6 +23,8 @@ function broadcast(text) {
 
 const server = http.createServer((_req, res) => res.end(`tracs-plus dev reload: ${clients.size} client(s)\n`));
 server.on('upgrade', (req, socket) => {
+  // Only extension pages may connect; a website open in the browser could otherwise listen in.
+  if (!String(req.headers.origin || '').startsWith('chrome-extension://')) return socket.destroy();
   const accept = crypto.createHash('sha1')
     .update(req.headers['sec-websocket-key'] + '258EAFA5-E914-47DA-95CA-C5AB0DC85B11').digest('base64');
   socket.write('HTTP/1.1 101 Switching Protocols\r\nUpgrade: websocket\r\nConnection: Upgrade\r\n'

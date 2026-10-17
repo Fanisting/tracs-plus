@@ -474,10 +474,16 @@
   ];
 
   // Fill an empty answer field only; never overwrite what the applicant wrote. Nothing is saved until they click Next.
+  // The field is the one the label points to, or else the only text field in the question's own group.
+  const TEXT_FIELD = 'textarea, input[type="text"], input:not([type])';
   function prefillField(label, value) {
-    const field = (label.htmlFor && document.getElementById(label.htmlFor))
-      || label.parentElement.querySelector('textarea, input:not([type="hidden"])');
-    if (!field || field.value.trim()) return;
+    let field = label.htmlFor && document.getElementById(label.htmlFor);
+    if (!field) {
+      const group = label.closest('.form-group');
+      const fields = group ? group.querySelectorAll(TEXT_FIELD) : [];
+      field = fields.length === 1 ? fields[0] : null;
+    }
+    if (!field || !field.matches(TEXT_FIELD) || field.value.trim()) return;
     field.value = value;
     field.dispatchEvent(new Event('input', { bubbles: true }));
     field.dispatchEvent(new Event('change', { bubbles: true }));
