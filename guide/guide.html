@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TRACS+ Guide</title>
+  <link rel="icon" href="../icons/icon32.png">
+  <link rel="stylesheet" href="guide.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-inner">
+      <img src="../icons/icon48.png" alt="" width="40" height="40">
+      <div>
+        <h1>TRACS+ Course Info</h1>
+        <p class="sub">An add-on for the UofT TRACS hiring site. It adds course names, instructors and TA support contacts to the job postings table.</p>
+      </div>
+      <span class="ver" id="version"></span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="card">
+      <h2>Get started</h2>
+      <ol class="steps">
+        <li>
+          <div class="step-head">
+            <strong>Pin TRACS+ to the toolbar</strong>
+            <span class="pill" id="pin-state" hidden></span>
+          </div>
+          <p>Click the puzzle icon <span class="key">&#129513;</span> at the top right of Chrome, then the pin next to <b>TRACS+ Course Info</b>. Clicking the <img class="inline-icon" src="../icons/icon16.png" alt="T+"> icon opens this guide again.</p>
+        </li>
+        <li>
+          <div class="step-head"><strong>Open TRACS and sign in</strong></div>
+          <p>Sign in so the table shows the Status column for postings you applied to.</p>
+          <p><a class="btn" href="https://tracs.utoronto.ca/" target="_blank" rel="noopener">Open TRACS</a></p>
+        </li>
+        <li>
+          <div class="step-head"><strong>Search for postings</strong></div>
+          <p>Click <span class="chip"><span class="mark">+</span> Rotman TA</span> next to <b>Search for Postings</b> to list Rotman teaching assistant postings in one click, or pick your own department and click <b>Search for Postings</b>.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>What TRACS+ adds</h2>
+      <p>Everything TRACS+ adds carries the <span class="badge">TRACS+</span> badge or a small <span class="mark">+</span> mark, so you can tell it apart from TRACS itself.</p>
+
+      <h3>The TRACS+ bar, above the table</h3>
+      <div class="mock" aria-hidden="true">
+        <div class="mock-row"><span class="badge">TRACS+</span><b class="mock-label">Filter postings by job title</b><span class="mock-select">Teaching Asst [MKT] (20)</span><span class="mi"><span class="mock-check on"></span>Remember my choice</span><span class="mock-link">Guide</span></div>
+        <div class="mock-row"><span class="mi"><span class="mock-check on"></span>Course name</span><span class="mi"><span class="mock-check on"></span>Instructor</span><span class="mi"><span class="mock-check on"></span>TA support email</span><span class="mi"><span class="mock-check on"></span>Lecture sections only</span><span class="mi"><span class="mock-check"></span>Use other terms if none</span><span class="mi"><span class="mock-check on"></span>Hide empty columns</span></div>
+        <div class="mock-row muted">Showing 20 of 124 postings · 19 courses: 7 with instructor, 12 without</div>
+      </div>
+      <ul>
+        <li><b>Filter postings by job title</b> lists the job titles in your results with their counts. Pick one to see only those postings. Tick <b>Remember my choice</b> to open with the same title next time.</li>
+        <li>The checkboxes show or hide the new columns and set how instructors are looked up. They sync with your Chrome profile.</li>
+        <li>The last line counts what is listed. Hover over it to see why some courses have no instructor.</li>
+      </ul>
+
+      <h3>New columns, marked <span class="mark">+</span></h3>
+      <ul>
+        <li><b>Course Name</b>: hover over it for the course description.</li>
+        <li><b>Instructor</b>: from the UofT Timetable Builder for the posting's term. Hover over it for each section's instructor.</li>
+        <li><b>TA Support</b>: the posting's contact email, ready to click.</li>
+      </ul>
+
+      <h3>A tidier table</h3>
+      <ul>
+        <li>Every posting is on one page, and postings you already submitted stay at the top.</li>
+        <li>Columns that are empty for every listed posting are hidden (Hours too); Dept-App is hidden when every posting shares one.</li>
+        <li><b class="apply">Apply</b> links are red so open postings stand out.</li>
+      </ul>
+
+      <h3>Notes on the application form</h3>
+      <p>Short <span class="badge">TRACS+</span> notes explain the convocation date question and the "best candidate" question. TRACS+ enters "." in the required "best candidate" field when it is empty; write a few sentences instead if the instructor has not already agreed. Nothing is saved until you click Next.</p>
+    </section>
+
+    <section class="card">
+      <h2>Reading the Instructor column</h2>
+      <dl class="legend">
+        <dt>Names</dt><dd>Instructors in the timetable for the posting's term. In <i>italics</i> with a term underneath: taken from another term (when <b>Use other terms if none</b> is on).</dd>
+        <dt class="muted">TBA</dt><dd>The course is in the timetable, but no instructor is posted yet.</dd>
+        <dt class="muted">grad course</dt><dd>Graduate courses (4-digit codes such as RSM2512H) are not in the public timetable.</dd>
+        <dt class="muted">not in timetable</dt><dd>The timetable does not list this course code.</dd>
+      </dl>
+    </section>
+
+    <section class="card two">
+      <div>
+        <h2>Privacy</h2>
+        <p>TRACS+ only runs on tracs.utoronto.ca. To find instructors it sends course codes, and nothing about you, to the public UofT Timetable Builder. Results are cached on this computer for a day.</p>
+      </div>
+      <div>
+        <h2>If something looks off</h2>
+        <ul>
+          <li><b>"TRACS+ was updated; reload this page"</b>: reload the TRACS tab.</li>
+          <li><b>No new columns</b>: click Search for Postings once.</li>
+          <li><b>Nothing at all</b>: check that TRACS+ is turned on in <span class="key">chrome://extensions</span>.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <script src="guide.js"></script>
+</body>
+</html>
